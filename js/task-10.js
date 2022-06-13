@@ -5,35 +5,35 @@ const refs = {
   btnDestroy: document.querySelector('[data-destroy]'),
 }
 
-const newDivs = [];
-let amount = 0;
+let newDivs = [];
+let amountDivs = 0;
 
 const onGetAmountDivs = (event) => {
-  amount = Number(event.currentTarget.value);
+  amountDivs = event.currentTarget.value;
 }
 
 const onCreateBoxes = (amount) => {
-  let newSize = 30;
   for (let i = 0; i < amount; i += 1) {
     const box = document.createElement("div");
-    newSize = 30 + newDivs.length * 10;
+    let newSize = 30 + newDivs.length * 10;
     box.style.backgroundColor = getRandomHexColor();
     box.style.width = `${newSize}px`;
     box.style.height = `${newSize}px`;
     newDivs.push(box);
+    console.log(newDivs);
   }
   refs.div.append(...newDivs);
+  amountDivs = 0;
+  newDivs.splice(0, newDivs.length);
 }
 
 const onCreateBtn = () => {
-  onCreateBoxes(amount);
-  refs.input.value = "";
-  amount = 0;
+  onCreateBoxes(amountDivs);
+  refs.input.value = "";  
 }
 
 const onDestroyBtn = () => {
   refs.div.innerHTML = '';
-  amount = 0;
 }
 
 function getRandomHexColor() {
