@@ -3,6 +3,9 @@ const refs = {
     text: document.querySelector("#text")
 }
 
+// bugfix
+refs.text.style.fontSize = `${refs.input.value}px`;
+// bugfix
 const changeFontSize = (event) => {
   refs.text.style.fontSize = `${event.currentTarget.value}px`;
 }
